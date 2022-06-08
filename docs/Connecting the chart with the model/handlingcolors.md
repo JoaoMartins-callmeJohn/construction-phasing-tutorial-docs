@@ -80,6 +80,27 @@ let newGantt = new Gantt("#phasing-container", phasing_config.tasks, {
 });
 ```
 
+To manage the bars colors as soon as we have the input loaded, we need to increment the `update` function from `PhasingPanel` class:
+
+```js
+update(model, dbids) {
+  if (phasing_config.tasks.length === 0) {
+    this.inputCSV();
+  }
+  model.getBulkProperties(dbids, { propFilter: phasing_config.propFilter }, (results) => {
+    results.map((result => {
+      this.updateObjects(result);
+    }))
+  }, (err) => {
+    console.error(err);
+  });
+  if (phasing_config.tasks.length > 0) {
+    this.gantt = this.createGanttChart();
+    this.handleColors.call(this); << HERE
+  }
+}
+```
+
 We also need to define `handleColors` function, that'll handle colors of bars and elements.
 For that, add the content below inside the `PhasingPanel` class:
 
