@@ -36,4 +36,4 @@ It's divided in the steps below:
 
 3. [Connecting the Gantt chart with the model](/connecting/home/)
 
-4. [Improving UI & UX]()
+4. [Improving UI & UX](/improving/home/)

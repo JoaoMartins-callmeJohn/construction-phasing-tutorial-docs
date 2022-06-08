@@ -14,8 +14,8 @@ As said in our landing page, this sample is based on our [tutorials](https://for
 
 Below you have the steps in this section:
 
-1. [Phasing Panel](/building/phasingpanel/)
 1. [Phasing Extension](/building/phasingextension/)
+1. [Phasing Panel](/building/phasingpanel/)
 1. [Configuration file](/building/configuration/)
 
-[Next step - Phasing Panel](/building/phasingpanel/){: .btn}
+[Next step - Phasing Extension](/building/phasingextension/){: .btn}

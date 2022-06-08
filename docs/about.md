@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-nav_order: 4
+nav_order: 5
 ---
 
 # About the Tutorial
@@ -12,6 +12,6 @@ This tutorial should not be your first step on Forge platform, if you're a first
 
 You can also find the full source-code of this implementation on [github](https://github.com/JoaoMartins-Forge/construction-phasing-tutorial).
 
-We also have a live demo at (TBD)
+We also have a live demo [HERE](https://joaomartins-forge.github.io/construction-phasing-tutorial/wwwroot/index.html)
 
 In case you have suggestions or questions, please reach us through [support](mailto:forge.help@autodesk.com)

@@ -2,7 +2,7 @@
 layout: page
 title: Input, Libraries and Configuration file
 permalink: /input/index
-nav_order: 2
+nav_order: 1
 ---
 
 # Input, Libraries and Configuration file
@@ -40,9 +40,7 @@ export const phasing_config = {
 };
 ```
 
-We can have an idea on how it's gonna work through the diagram below:
-
-**HERE GOES A DIAGRAM SHOWING THE WORKFLOW TO MAP TASKS AND ELEMENTS**
+We can have an idea on how it's gonna work through the tutorial, as we'll keep improving `config.js` and our extension.
 
 Now that we know how it's gonna work and the project dependencies, we can start building our sample.
 
