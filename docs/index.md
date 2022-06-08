@@ -30,10 +30,10 @@ Once you have everything steps 1, 2 & 3 covered, you can go through this tutoria
 
 It's divided in the steps below:
 
-1. [Input, Libraries and Configuration file](/input/index)
+1. [Input, Libraries and Configuration file](/docs/input/index)
 
-2. [Building the Gantt chart](/building/home/)
+2. [Building the Gantt chart](/docs/building/home/)
 
-3. [Connecting the Gantt chart with the model](/connecting/home/)
+3. [Connecting the Gantt chart with the model](/docs/connecting/home/)
 
-4. [Improving UI & UX](/improving/home/)
+4. [Improving UI & UX](/docs/improving/home/)
