@@ -23,8 +23,8 @@ email: joao.martins@autodesk.com
 description: >- # this means to ignore newlines until "baseurl:"
   This documentation will guide you on how to build a sample for construction phasing. We'll go through the libraries required and Forge services.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://joaomartins-forge.github.io/construction-phasing-tutorial-docs" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "/docs"
+# url: "https://joaomartins-forge.github.io/construction-phasing-tutorial-docs" # the base hostname & protocol for your site, e.g. http://example.com
+# baseurl: "/docs"
 logo: "/assets/images/forge_logo.png"
 
 search_enabled: true
