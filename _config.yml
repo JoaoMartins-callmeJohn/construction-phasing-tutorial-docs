@@ -55,7 +55,7 @@ search:
   button: false
 
 # Build settings
-theme: "just-the-docs"
+# theme: "just-the-docs"
 plugins:
   - jekyll-feed
 # Exclude from processing.
