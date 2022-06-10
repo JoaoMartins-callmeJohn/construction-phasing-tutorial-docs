@@ -53,6 +53,10 @@ search:
   # Supports true or false (default)
   button: false
 
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
+  
 # Build settings
 # theme: "just-the-docs"
 remote_theme: just-the-docs/just-the-docs
