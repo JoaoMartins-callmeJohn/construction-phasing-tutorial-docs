@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Connecting the chart with the model
-nav_order: 3
+nav_order: 4
 has_children: true
 permalink: /connecting/home/
 ---
