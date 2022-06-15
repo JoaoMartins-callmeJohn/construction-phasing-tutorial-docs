@@ -14,6 +14,8 @@ nav_order: 1
 
 In this tutorial we'll be focusing on building a sample for construction phasing inside Viewer through an extension.
 
+![Final Result](../../assets/images/complete.gif)
+
 In details, we'll basically render a model (managed by you Forge app or Autodesk SaaS applications, refer [here](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) on the browser with Viewer, and then adding a [Gantt chart](https://en.wikipedia.org/wiki/Gantt_chart) connected with the model's, in a way that we can check the objects related to each task, having a graphical visual of our schedule.
 
 Cool, right, but for that we'll need some pre-requisited in order to take the most of our efforts:
