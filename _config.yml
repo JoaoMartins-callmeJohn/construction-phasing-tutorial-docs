@@ -8,7 +8,7 @@ logo: "/assets/images/forge_logo.png"
 baseurl: "/construction-phasing-tutorial-docs" # the subpath of your site, e.g. /blog
 url: "https://joaomartins-forge.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-permalink: "/:path/:basename/"
+permalink: "/construction-phasing-tutorial-docs/"
 
 search_enabled: true
 
