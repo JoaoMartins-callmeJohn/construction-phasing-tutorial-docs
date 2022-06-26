@@ -94,4 +94,4 @@ And now we're able to isolate linked elements by double-clicking in a task, just
 
 In the next step we'll impletent methods to handle elements coloring based on their progress.
 
-[Next step - Handling elements and bars colors](/connecting/handlingcolors/){: .btn}
+[Next step - Handling elements and bars colors]({{ site.baseurl }}/connecting/handlingcolors/){: .btn}

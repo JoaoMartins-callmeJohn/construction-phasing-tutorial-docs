@@ -61,4 +61,4 @@ toggleOrientation(isVertical) {
 
 ![Handling Panel orientation](../../assets/images/orientation.gif)
 
-[Next step - Update CSV](/improving/csv/){: .btn}
+[Next step - Update CSV]({{ site.baseurl }}/improving/csv/){: .btn}

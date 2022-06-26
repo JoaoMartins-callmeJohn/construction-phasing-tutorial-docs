@@ -132,4 +132,4 @@ export class PhasingPanel extends Autodesk.Viewing.UI.DockingPanel {
 ```
 You might have noticed that we're importing `phasing_config` in this panel, that'll be our next step.
 
-[Next step - Configuration File](/building/configuration/){: .btn}
+[Next step - Configuration File]({{ site.baseurl }}/building/configuration/){: .btn}

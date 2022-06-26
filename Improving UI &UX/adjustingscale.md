@@ -69,4 +69,4 @@ And that's it, our Gantt chart can now be rescaled to show the tasks in days, we
 
 ![Adjusting the scale](../../assets/images/viewmodes.gif)
 
-[Next step - Handling Panel orientation](/improving/orientation/){: .btn}
+[Next step - Handling Panel orientation]({{ site.baseurl }}/improving/orientation/){: .btn}

@@ -44,4 +44,4 @@ We can have an idea on how it's gonna work through the tutorial, as we'll keep i
 
 Now that we know how it's gonna work and the project dependencies, we can start building our sample.
 
-[Next step](/building/home){: .btn}
+[Next step]({{ site.baseurl }}/building/home){: .btn}

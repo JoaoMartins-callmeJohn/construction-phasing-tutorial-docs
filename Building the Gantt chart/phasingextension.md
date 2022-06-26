@@ -98,4 +98,4 @@ const viewer = new Autodesk.Viewing.GuiViewer3D(container, config);
 
 You might have noticed that this extension imports the `PhasingPanel` class. That'll be our next step.
 
-[Next step - Creating the Phasing Panel](/building/phasingpanel/){: .btn}
+[Next step - Creating the Phasing Panel]({{ site.baseurl }}/building/phasingpanel/){: .btn}

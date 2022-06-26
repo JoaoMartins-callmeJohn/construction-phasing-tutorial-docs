@@ -182,4 +182,4 @@ With all of that defined, you should be able to see the model just like in the g
 
 ![Second Step Result](../../assets/images/steptwo.gif)
 
-[Next step - Improving UI & UX](/improving/home/){: .btn}
+[Next step - Improving UI & UX]({{ site.baseurl }}/improving/home/){: .btn}

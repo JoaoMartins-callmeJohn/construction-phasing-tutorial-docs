@@ -16,5 +16,5 @@ We can improve our schedule and making it connected with the objects referred at
 
 This can be improved through the different tasks below:
 
-1. [Reacting to Gantt chart events](/connecting/reacting/)
-1. [Handling elements and bars colors](/connecting/handlingcolors/)
+1. [Reacting to Gantt chart events]({{ site.baseurl }}/connecting/reacting/)
+1. [Handling elements and bars colors]({{ site.baseurl }}/connecting/handlingcolors/)

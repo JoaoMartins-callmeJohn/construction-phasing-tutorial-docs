@@ -12,6 +12,6 @@ Now is time to improve our interface. We need to make this Gantt chart friendly 
 
 These will be the topics covered in this part, resulting in the app just like the gif below:
 
-1. [Adjusting the scale](/improving/scale/)
-1. [Handling Panel orientation](/improving/orientation/)
-1. [Update CSV](/improving/csv/)
+1. [Adjusting the scale]({{ site.baseurl }}/improving/scale/)
+1. [Handling Panel orientation]({{ site.baseurl }}/improving/orientation/)
+1. [Update CSV]({{ site.baseurl }}/improving/csv/)
