@@ -31,4 +31,4 @@ With that, we're able to check our brand new Gantt chart generated from our csv 
 
 ![First Step Result](../../assets/images/stepone.gif)
 
-[Next step - Connecting the chart with the model](/connecting/home/){: .btn}
+[Next step - Connecting the chart with the model]({{ site.baseurl }}/connecting/home/){: .btn}
