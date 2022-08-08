@@ -9,9 +9,9 @@ permalink: /building/phasingextension/
 
 # Phasing Extension
 
-Here we'll add the `PhasingExtension.js` to our app. This extension will extend the `BaseExtension.js`.
-Through it, we'll handle the creation of the button, panel and loading the required library (frappe-gantt).
-Let's start by creating our panel `PhasingExtension.js` under `wwwroot/extensions` with the content below:
+Aqui adicionaremos o arquivo `PhasingExtension.js` ao nosso aplicativo. Esta extensão estenderá a classe `BaseExtension`.
+Através dele, trataremos da criação do botão, painel e carregamento da biblioteca necessária (frappe-gantt).
+Vamos começar criando nossa extensão  `PhasingExtension.js` na pasta `wwwroot/extensions` com o conteúdo abaixo:
 
 ```js
 import { BaseExtension } from './BaseExtension.js';
@@ -79,15 +79,15 @@ class PhasingExtension extends BaseExtension {
 Autodesk.Viewing.theExtensionManager.registerExtension('PhasingExtension', PhasingExtension);
 ```
 
-Now we need to add our extension to Viewer.
+Agora precisamos adicionar nossa extensão ao Viewer.
 
-Add the line below to your js file that's loading the Viewer:
+Adicione a linha abaixo ao seu arquivo js que está carregando o Viewer:
 
 ```
 import './extensions/PhasingExtension.js';
 ```
 
-We also need to add our extension 
+Também precisamos adicionar nossa extensão
 
 ```
 const config = {
@@ -96,6 +96,6 @@ const config = {
 const viewer = new Autodesk.Viewing.GuiViewer3D(container, config);
 ```
 
-You might have noticed that this extension imports the `PhasingPanel` class. That'll be our next step.
+Você deve ter notado que esta extensão importa a classe `PhasingPanel`. Esse será o nosso próximo passo.
 
-[Next step - Creating the Phasing Panel]({{ site.baseurl }}/building/phasingpanel/){: .btn}
+[Próximo passo - Phasing Panel]({{ site.baseurl }}/building/phasingpanel/){: .btn}

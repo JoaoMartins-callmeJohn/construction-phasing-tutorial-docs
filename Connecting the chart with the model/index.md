@@ -6,15 +6,15 @@ has_children: true
 permalink: /connecting/home/
 ---
 
-# Connecting the chart with the model
+# Conectando o gráfico com o modelo
 
-Ok, we have a Gantt chart inside Viewer that's defined by a csv input, but that's not connected with the model.
+Ok, temos um gráfico de Gantt dentro do Viewer que é definido por uma arquivo csv, mas que não está conectado ao modelo.
 
-We can improve our schedule and making it connected with the objects referred at each task, just like the gif below:
+Podemos melhorar nossa gráfico conectando-o com os objetos referenciados em cada tarefa, assim como o gif abaixo:
 
 ![Second Step Result](../../assets/images/steptwo.gif)
 
-This can be improved through the different tasks below:
+Obtemos esse resultado através dos passos descritos abaixo:
 
-1. [Reacting to Gantt chart events]({{ site.baseurl }}/connecting/reacting/)
-1. [Handling elements and bars colors]({{ site.baseurl }}/connecting/handlingcolors/)
+1. [Reagindo a eventos do gráfico]({{ site.baseurl }}/connecting/reacting/)
+1. [Controlando a cor dos elementos]({{ site.baseurl }}/connecting/handlingcolors/)

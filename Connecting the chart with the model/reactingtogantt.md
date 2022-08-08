@@ -7,24 +7,38 @@ parent: Connecting the chart with the model
 permalink: /connecting/reacting/
 ---
 
-# Reacting to Gantt chart events
+# Reagindo a eventos do gráfico
 
-With our tasks defined, we need to map each one of them with the proper element rendered in Viewer.
-To do that, we need to retrieve the elements properties right after the input if the csv file.
+Com nossas tarefas definidas, precisamos mapear cada uma com o elemento pertinente renderizado no Viewer.
+Para fazer isso, precisamos recuperar as propriedades dos elementos logo após a entrada do arquivo csv.
 
-That's our first step, through the [getbulkProperties](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback) function.
-For this sample, we'll map tasks and elements based on the value of a property defined, and this property will be defined by the `config.js`file.
-Let's add three fields in the configuration file, one to store the objects, one to store tasks and properties and last one to control wich property we'll use for mapping, just like the snippet below:
+Esse é o nosso primeiro passo! Através do método[getbulkProperties](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback).
+Para este exemplo, mapeamos tarefas e elementos com base no valor de uma propriedade definida, e essa propriedade será definida pelo arquivo `config.js`.
+Vamos adicionar dois campos no arquivo de configuração:
+ Um para armazenar os objetos e um para armazenar tarefas e propriedades, assim como o trecho abaixo:
 
-```json
-"objects": {},
-"propFilter": "Type Name",
-"mapTaksNProps": {}
+```js
+export const phasing_config = {
+  "propFilter": "Type Name",
+  "tasks": [],
+  "requiredProps": {
+    "id": "ID",
+    "taskName": "NAME",
+    "startDate": "START",
+    "endDate": "END",
+    "taskProgress": "PROGRESS",
+    "dependencies": "DEPENDENCIES"
+  },
+  ========START OF THE  ADDITIONAL CONTENT========
+  "objects": {},
+  "mapTaksNProps": {}
+  ========END OF THE  ADDITIONAL CONTENT========
+}
 ```
 
-For this demo we'll use `Type Name`property for mapping.
-With that, we can define the method to map tasks and elements.
-Add the content below inside `update` function of `PhasingPanel` class:
+Para esta demonstração, usaremos a propriedade `Type Name` para mapeamento.
+Com isso, podemos definir o método para mapear tarefas e elementos.
+Adicione o conteúdo abaixo dentro da função `update` da classe `PhasingPanel`:
 
 ```js
 ...
@@ -32,7 +46,7 @@ update(model, dbids) {
   if (phasing_config.tasks.length === 0) {
     this.inputCSV();
   }
-  //Start of the new content
+  ========START OF THE  ADDITIONAL CONTENT========
   model.getBulkProperties(dbids, { propFilter: phasing_config.propFilter }, (results) => {
     results.map((result => {
       this.updateObjects(result);
@@ -40,23 +54,12 @@ update(model, dbids) {
   }, (err) => {
     console.error(err);
   });
-  //End of the new content
+  ========END OF THE  ADDITIONAL CONTENT========
   if (phasing_config.tasks.length > 0) {
     this.gantt = this.createGanttChart();
   }
 }
-...
-```
-
-we also need to add `updateObjects` function inside `PhasingPanel` class, as defined below:
-
-```js
-...
-validateCSV(line) {
-  let parameters = line.split(',');
-  return Object.values(phasing_config.requiredProps).every((currentProp) => !!parameters.find(p => p === currentProp));
-}
-//Start of the new content
+========START OF THE  ADDITIONAL CONTENT========
 updateObjects(result) {
   let currentTaskId = phasing_config.mapTaksNProps[result.properties[0].displayValue];
   if (!!currentTaskId) {
@@ -66,13 +69,14 @@ updateObjects(result) {
     phasing_config.objects[currentTaskId].push(result.dbId);
   }
 }
-//End of the new content
+========END OF THE  ADDITIONAL CONTENT========
+...
 ```
 
-And athat covers the elements, now we need to implement `mapTaksNProps` field with the values from our input.
-To do that, we'll take advantage of `addPropToMap` function called every time we read the csv.
+E isso cobre os elementos, agora precisamos implementar o campo `mapTaksNProps` com os valores da nossa entrada.
+Para isso, vamos aproveitar a função `addPropToMap` chamada toda vez que lemos o csv.
 
-Add `addPropToMap` function inside `PhasingPanel` class:
+Adicione a função `addPropToMap` dentro da classe `PhasingPanel`:
 
 ```js
 ...
@@ -85,14 +89,14 @@ updateObjects(result) {
     phasing_config.objects[currentTaskId].push(result.dbId);
   }
 }
-//Start of the new content
+========START OF THE  ADDITIONAL CONTENT========
 addPropToMap(filterValue, taskId) {
   phasing_config.mapTaksNProps[filterValue] = taskId;
 }
-//End of the new content
+========END OF THE  ADDITIONAL CONTENT========
 ```
 
-And reference it inside `lineToObject` function:
+E referenciá-lo dentro da função `lineToObject`:
 
 ```js
 ...
@@ -101,7 +105,6 @@ lineToObject(line, inputHeadersLine) {
   let parameters = line.split(',');
   let inputHeaders = inputHeadersLine.split(',');
   let newObject = {};
-  // Object.keys(newObject) = PHASING_CONFIG.requiredProps;
   Object.values(phasing_config.requiredProps).forEach(requiredProp => {
     newObject.id = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.id)];
     newObject.name = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.taskName)];
@@ -111,19 +114,19 @@ lineToObject(line, inputHeadersLine) {
     newObject.dependencies = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.dependencies)];
     newObject.dependencies.replaceAll('-', ',');
   });
-  //Start of the new content
+  ========START OF THE  ADDITIONAL CONTENT========
   this.addPropToMap(parameters[inputHeaders.findIndex(h => h === phasing_config.propFilter)], newObject.id);
-  //End of the new content
+  ========END OF THE  ADDITIONAL CONTENT========
   return newObject;
   }
 ```
 
-Now that we have our schedule with tasks and model elements properly mapped, we can take advantage of the events triggered by [Frappe-Gantt](https://frappe.io/gantt).
-The first one we can use is `on_click` in a way to isolate proper elements when a task gets clicked.
+Agora que temos nossa agenda com tarefas e elementos de modelo devidamente mapeados, podemos aproveitar os eventos acionados pelo [Frappe-Gantt](https://frappe.io/gantt).
+O primeiro que podemos usar é o `on_click` de forma a isolar elementos apropriados quando uma tarefa é clicada.
 
-To achieve that, we need to change `PhasingPanel.js` by adding the contents bellow.
+Para conseguir isso, precisamos alterar `PhasingPanel.js` adicionando o conteúdo abaixo.
 
-First, we add the `on_click` listener on the Gantt chart instantiation inside `createGanttChart` function:
+Primeiro, adicionamos o evento `on_click` na criação do gráfico de Gantt dentro da função `createGanttChart`:
 
 ```js
 ...
@@ -131,26 +134,26 @@ createGanttChart() {
   document.getElementById('phasing-container').innerHTML = `<svg id="phasing-container"></svg>`;
 
   let newGantt = new Gantt("#phasing-container", phasing_config.tasks, 
-  //Start of the new content
+  ========START OF THE  ADDITIONAL CONTENT========
   {
     on_click: this.barCLickEvent.bind(this)
   }
+  ========END OF THE  ADDITIONAL CONTENT========
   );
-  //End of the new content
   return newGantt;
 }
-//Start of the new content
+========START OF THE  ADDITIONAL CONTENT========
 barCLickEvent(task) {
   this.extension.viewer.isolate(phasing_config.objects[task.id]);
 }
-//End of the new content
+========END OF THE  ADDITIONAL CONTENT========
 ...
 ```
 
-And now we're able to isolate linked elements by double-clicking in a task, just like in the gif below:
+E agora podemos isolar elementos vinculados clicando duas vezes em uma tarefa, assim como no gif abaixo:
 
 ![First Step Result](../../assets/images/doubleclick.gif)
 
-In the next step we'll impletent methods to handle elements coloring based on their progress.
+No próximo passo, implementaremos métodos para lidar com a coloração de elementos com base em seu progresso.
 
-[Next step - Handling elements and bars colors]({{ site.baseurl }}/connecting/handlingcolors/){: .btn}
+[Próximo passo - Controlando a cor dos elementos]({{ site.baseurl }}/connecting/handlingcolors/){: .btn}

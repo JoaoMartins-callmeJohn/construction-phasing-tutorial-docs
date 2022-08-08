@@ -9,9 +9,9 @@ permalink: /building/phasingpanel/
 
 # Phasing Panel
 
-Now we configure our Panel. Here we'll basically have a panel that's gonna store our Gantt chart.
-The library we choose requires a [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) element to place the chart.
-Let's start by creating our panel `PhasingPanel.js` under `wwwroot/extensions` with the content below:
+Agora configuramos nosso Painel. Aqui basicamente teremos um painel que armazenará nosso gráfico de Gantt.
+A biblioteca que escolhemos requer um elemento [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) para colocar o gráfico.
+Vamos começar criando nosso painel `PhasingPanel.js` em `wwwroot/extensions` com o conteúdo abaixo:
 
 ```js
 import { phasing_config } from './config.js';
@@ -130,6 +130,6 @@ export class PhasingPanel extends Autodesk.Viewing.UI.DockingPanel {
   }
 }
 ```
-You might have noticed that we're importing `phasing_config` in this panel, that'll be our next step.
+Você deve ter notado que estamos importando `phasing_config` neste painel, esse será nosso próximo passo.
 
-[Next step - Configuration File]({{ site.baseurl }}/building/configuration/){: .btn}
+[Próximo passo - Arquivo de configuração]({{ site.baseurl }}/building/configuration/){: .btn}

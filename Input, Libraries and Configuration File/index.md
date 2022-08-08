@@ -5,11 +5,11 @@ permalink: /input/index
 nav_order: 2
 ---
 
-# Input, Libraries and Configuration file
+# Introdução
 
-To generate the Gantt chart connected with our models, we need a library to generate the chart and a way to implement additional information related to the tasks that each element will be part of.
+Para gerar o gráfico de Gantt conectado aos nossos modelos, precisamos de uma biblioteca e uma forma de implementar informações adicionais relacionadas às tarefas que cada elemento fará parte.
 
-For the library, we choose [Frappe/Gantt](https://frappe.io/gantt) for its simplicity and flexibility. <br /> This library requires the following object to define a task:
+Para a biblioteca, escolhemos [Frappe/Gantt](https://frappe.io/gantt) pela sua simplicidade e flexibilidade. <br /> Esta biblioteca requer o seguinte objeto para definir uma tarefa:
 
 ```
 {
@@ -22,17 +22,17 @@ For the library, we choose [Frappe/Gantt](https://frappe.io/gantt) for its simpl
 }
 ```
 
-We need all of these information to generate each task, and we also need a way to map tasks and the elements of our model. In this sample, we'll use a property to do this mapping (controlled by the configuration file `config.js`). <br /> In the end, we'll have the following configuration for our csv:
+Precisamos de todas essas informações para gerar cada tarefa e também precisamos de uma maneira de mapear as tarefas e os elementos do nosso modelo. Neste exemplo, usaremos uma propriedade para fazer esse mapeamento (controlado pelo arquivo de configuração `config.js`). <br /> Ao final, teremos a seguinte configuração para nosso csv:
 
 | ID  | NAME          | START      | END        | PROGRESS | Type Name              | DEPENDENCIES |
 | --- | ------------- | ---------- | ---------- | -------- | ---------------------- | ------------ |
 | 123 | Timber Floors | 2022-03-10 | 2022-04-04 | 100      | Timber Suspended Floor | 121-122      |
 
-With this csv we have all the information required by the library and the property used to connect with the model (**Type Name**).
+Com este csv temos todas as informações exigidas pela biblioteca e a propriedade utilizada para conectar com o modelo (**Type Name**).
 
-We also need the configuration file (`config.js`). The config contain information that we'll use across different sections of this tutorial, and we'll cover each part here. For now let's focus on the property used for mapping tasks and elements. This is controlled by the `propFilter` field:
+Também precisamos do arquivo de configuração (`config.js`). A configuração contém informações que usaremos em diferentes seções deste tutorial e abordaremos cada parte aqui. Por enquanto, vamos nos concentrar na propriedade usada para mapear tarefas e elementos. Isso é controlado pelo campo `propFilter`.
 
-For now, you can create a `config.js` file under `wwwroot/extensions` folder with the content below:
+Por enquanto, você pode criar um arquivo `config.js` na pasta `wwwroot/extensions` com o conteúdo abaixo:
 
 ```js
 export const phasing_config = {
@@ -40,10 +40,10 @@ export const phasing_config = {
 };
 ```
 
-We can have an idea on how it's gonna work through the tutorial, as we'll keep improving `config.js` and our extension.
+Teremos uma ideia de como isso vai funcionar no decorrer do tutorial, pois continuaremos melhorando o `config.js` e nossa extensão.
 
-As said in home page, you'll also need the `BaseExtension.js` for this sample to work.
-Add the file under the `extensions` folder of your project with the content below.
+Como dito na página inicial, você também precisará do arquivo `BaseExtension.js` para que este exemplo funcione.
+Adicione o arquivo na pasta `extensions` do seu projeto com o conteúdo abaixo.
 
 ```js
 export class BaseExtension extends Autodesk.Viewing.Extension {
@@ -153,6 +153,6 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
 }
 ```
 
-Now that we know how it's gonna work and the project dependencies, we can start building our sample.
+Agora que sabemos como vai funcionar e as dependências do projeto, podemos começar a construir nosso exemplo.
 
-[Next step - Building the Gantt chart]({{ site.baseurl }}/building/home){: .btn}
+[Próxima etapa - Adicionando o Gráfico de Gantt]({{ site.baseurl }}/building/home){: .btn}

@@ -6,12 +6,12 @@ has_children: true
 permalink: /improving/home/
 ---
 
-# Improving UI & UX
+# Otimizando a experiência
 
-Now is time to improve our interface. We need to make this Gantt chart friendly for the user and more usefull by adding control of the scale of our chart (days, months and weeks), handling orientation of our panel, and an option to input a different csv file.
+Agora é hora de melhorar nossa interface. Precisamos tornar este gráfico de Gantt amigável para o usuário e mais útil adicionando controle da escala do nosso gráfico (dias, meses e semanas), orientação do nosso painel e uma opção para inserir um arquivo csv diferente.
 
-These will be the topics covered in this part, resulting in the app just like the gif below:
+Esses serão os tópicos abordados nesta parte, resultando no aplicativo igual ao gif abaixo:
 
-1. [Adjusting the scale]({{ site.baseurl }}/improving/scale/)
-1. [Handling Panel orientation]({{ site.baseurl }}/improving/orientation/)
-1. [Update CSV]({{ site.baseurl }}/improving/csv/)
+1. [Ajustando a escala]({{ site.baseurl }}/improving/scale/)
+1. [Controlando a orientação]({{ site.baseurl }}/improving/orientation/)
+1. [Atualizando o CSV]({{ site.baseurl }}/improving/csv/)

@@ -10,32 +10,32 @@ nav_order: 1
 
 # Construction Phasing Tutorial
 
-## Introduction
+## Introdução
 
-In this tutorial we'll be focusing on building a sample for construction phasing inside Viewer through an extension.
+Neste tutorial, vamos nos concentrar na construção de uma extensão para faseamento de construção dentro do Viewer.
 
 ![Final Result](/assets/images/complete.gif)
 
-In details, we'll basically render a model (managed by you Forge app or Autodesk SaaS applications, refer [here](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) on the browser with Viewer, and then adding a [Gantt chart](https://en.wikipedia.org/wiki/Gantt_chart) connected with the model's, in a way that we can check the objects related to each task, having a graphical visual of our schedule.
+Basicamente vamos renderizar um modelo (gerenciado pelo seu aplicativo Forge, Autodesk Docs ou outro repositório em núvem da Autodesk. Detalhes [aqui](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) no navegador com o Viewer, adicionando um [gráfico de Gantt](https://en.wikipedia.org/wiki/Gantt_chart) conectado com o modelo, de modo que tenhamos os elementos vinculados a diversas atividades construtivas.
 
-Cool, right, but for that we'll need some pre-requisited in order to take the most of our efforts:
+Legal! Para atingir esse objetivo precisaremos de alguns pré-requisitos:
 
-1. First of all, if you're taking your first steps with Forge, please go through [Getting Started](https://forge-tutorials.autodesk.io) and [Environment Setup](https://forge-tutorials.autodesk.io/setup/).
+1. Primeiramente, se você está dando seus primeiros passos com Forge, vá até o nosso tutorial [Getting Started](https://forge-tutorials.autodesk.io) and [Environment Setup](https://forge-tutorials.autodesk.io/setup/).
 
-2. This tutorial will focus on building a [Viewer Extension](https://forge.autodesk.com/en/docs/viewer/v7/developers_guide/viewer_basics/extensions/), not the whole app. If you don't have an app, you can take advantage of [Simple Viewer](https://forge-tutorials.autodesk.io/tutorials/simple-viewer/) or [Hubs Browser](https://forge-tutorials.autodesk.io/tutorials/hubs-browser/) in either Node.js or .NET.
+2. Este tutorial será focado na criação de uma [Extensão do Viewer](https://forge.autodesk.com/en/docs/viewer/v7/developers_guide/viewer_basics/extensions/), tendo como base um aplicativo já definido. Se você não tem um, pode usar o exemplo [Simple Viewer](https://forge-tutorials.autodesk.io/tutorials/simple-viewer/) ou [Hubs Browser](https://forge-tutorials.autodesk.io/tutorials/hubs-browser/) em Node.js ou .NET.
 
-3. To build this extension, we'll take advantage of the [Basic Extension](https://forge-tutorials.autodesk.io/tutorials/dashboard/basic) from [Forge tutorial](https://forge-tutorials.autodesk.io), but you don't need to go there, we'll provide the `BaseExtension.js` file as part of this tutorial.
+3. Para construir essa extensão, usaremos o exemplo [Basic Extension](https://forge-tutorials.autodesk.io/tutorials/dashboard/basic) do [tutorial de Forge](https://forge-tutorials.autodesk.io), mas não é necessário ir até lá. O arquivo `BaseExtension.js` será disado na próxima etapa desse tutorial.
 
-4. If you don't have a model for testing, feel free to grab one of our [sample files](https://knowledge.autodesk.com/support/revit/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/Revit-GetStarted/files/GUID-7B9C7A69-1083-406D-A01F-53D405C167F3-htm.html) (we strongly recomend a Revit sample).
+4. Se ainda não tem um modelo para teste, use um da nossa seção de [exemplos](https://knowledge.autodesk.com/support/revit/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/Revit-GetStarted/files/GUID-7B9C7A69-1083-406D-A01F-53D405C167F3-htm.html) (Um arquivo RVT é fortemente recomendado).
 
-Once you have everything steps 1, 2 & 3 covered, you can go through this tutorial.
+Uma com os pré-requisitos garantidos, passe para a próxima etapa do tutorial.
 
-It's divided in the steps below:
+O tutorial é dividido em 4 macro etapas:
 
-1. [Input, Libraries and Configuration file]({{ site.baseurl }}/input/index)
+1. [Introdução]({{ site.baseurl }}/input/index)
 
-2. [Building the Gantt chart]({{ site.baseurl }}/building/home/)
+2. [Adicionando o Gráfico de Gantt]({{ site.baseurl }}/building/home/)
 
-3. [Connecting the Gantt chart with the model]({{ site.baseurl }}/connecting/home/)
+3. [Conectando o gráfico com o modelo]({{ site.baseurl }}/connecting/home/)
 
-4. [Improving UI & UX]({{ site.baseurl }}/improving/home/)
+4. [Otimizando a experiência]({{ site.baseurl }}/improving/home/)

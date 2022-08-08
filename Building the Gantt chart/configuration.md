@@ -9,9 +9,9 @@ permalink: /building/configuration/
 
 # Configuration File
 
-The configuration file defines how our extension will read the csv file, arrange and connect data with our model.
-In this first step we need to define the property we'll use for filtering, the required properties expected from a csv input and the variables to store tasks, objects maped to tasks and a dictionary for mapping.
-Let's improve our configuration file `config.js` under `wwwroot/extensions` with the content below:
+O arquivo de configuração define como nossa extensão fará a leitura do arquivo csv, para posterior organização e conexão dos dados com o nosso modelo.
+Nesta primeira etapa, precisamos definir a propriedade que usaremos para filtrar, as propriedades necessárias esperadas do arquivo csv e as variáveis para armazenar tarefas.
+Vamos melhorar nosso arquivo de configuração `config.js` em `wwwroot/extensions` com o conteúdo abaixo:
 
 ```js
 export const phasing_config = {
@@ -28,8 +28,8 @@ export const phasing_config = {
 }
 ```
 
-With that, we're able to check our brand new Gantt chart generated from our csv input.
+Com isso, podemos verificar nosso novo gráfico de Gantt gerado a partir de nossa entrada csv.
 
 ![First Step Result](../../assets/images/stepone.gif)
 
-[Next step - Connecting the chart with the model]({{ site.baseurl }}/connecting/home/){: .btn}
+[Próxima etapa - Conectando o gráfico com o modelo]({{ site.baseurl }}/connecting/home/){: .btn}

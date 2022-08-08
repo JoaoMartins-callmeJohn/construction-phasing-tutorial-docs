@@ -5,13 +5,12 @@ permalink: /about/
 nav_order: 6
 ---
 
-# About the Tutorial
+# Sobre o Tutorial
+Este tutorial se concentra na construção de uma extensão do Viewer focada em Faseamento de Construção. Para conseguir isso, passaremos pelas etapas necessárias, aproveitando as APIs da plataforma Forge e outras bibliotecas.
+Este tutorial não deve ser seu primeiro passo na plataforma Forge, se você é um usuário iniciante, por favor, vá até o Guia de Introdução em[forge-tutorials](https://forge-tutorials.autodesk.io).
 
-This tutorial focuses on building a Viewer extension focused on Construction Phasing. To achieve that, we'll go through the steps required, taking advantage of Forge APIs and other libraries.
-This tutorial should not be your first step on Forge platform, if you're a first time user, please go through the Getting Started at [forge-tutorials](https://forge-tutorials.autodesk.io).
+Você também pode encontrar o código-fonte completo desta implementação em [github](https://github.com/JoaoMartins-Forge/construction-phasing-tutorial).
 
-You can also find the full source-code of this implementation on [github](https://github.com/JoaoMartins-Forge/construction-phasing-tutorial).
+Também temos uma demonstração em tempo real disponível [aqui](https://joaomartins-forge.github.io/construction-phasing-tutorial/wwwroot/index.html)
 
-We also have a live demo [HERE](https://joaomartins-forge.github.io/construction-phasing-tutorial/wwwroot/index.html)
-
-In case you have suggestions or questions, please reach us through [support](mailto:forge.help@autodesk.com)
+Caso tenha sugestões ou dúvidas, entre em contato conosco através do [suporte](mailto:forge.help@autodesk.com)

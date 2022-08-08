@@ -7,11 +7,11 @@ parent: Improving UI & UX
 permalink: /improving/orientation/
 ---
 
-# Handling Panel orientation
+# Controlando a Orientação
 
-Now is time to address the UI & UX of our chart.
-For that, we'll add two buttons that will dock our panel to the left and to the bottom of our screen.
-You just need to add the snippet below inside `initialize` function of the `PhasingPanel` class:
+Agora é hora de melhorar a apresentação do nosso gráfico.
+Para isso, adicionaremos dois botões que encaixarão nosso painel à esquerda e na parte inferior da tela.
+Você só precisa adicionar o snippet abaixo dentro da função `initialize` da classe `PhasingPanel`:
 
 ```js
 ...
@@ -122,4 +122,4 @@ toggleOrientation(isVertical) {
 
 ![Handling Panel orientation](../../assets/images/orientation.gif)
 
-[Next step - Update CSV]({{ site.baseurl }}/improving/csv/){: .btn}
+[Próximo passo - Atualizando o CSV]({{ site.baseurl }}/improving/csv/){: .btn}

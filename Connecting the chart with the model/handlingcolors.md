@@ -7,11 +7,11 @@ parent: Connecting the chart with the model
 permalink: /connecting/handlingcolors/
 ---
 
-# Handling elements and bars colors
+# Controlando a cor dos elementos
 
-In order to override the model and bars colors based on the Gantt chart configuration, we need a method to calculate the status of a task, a field in the configuration file to define the colors for each status and a functions reacting to the events triggered when we change the chart.
-Let's go do it!
-First we need to increment `config.js` adding the fields below:
+Para substituir as cores do modelo e das barras com base na configuração do gráfico de Gantt, precisamos de um método para calcular o status de uma tarefa, um campo no arquivo de configuração para definir as cores para cada status e uma função reagindo aos eventos acionados quando mudamos o gráfico.
+Vamos fazê-lo!
+Primeiro precisamos incrementar o arquivo `config.js` adicionando os campos abaixo:
 
 ```js
 export const phasing_config = {
@@ -25,7 +25,7 @@ export const phasing_config = {
     "taskProgress": "PROGRESS",
     "dependencies": "DEPENDENCIES"
   },
-  //Start of the new content
+  ========START OF THE  ADDITIONAL CONTENT========
   "statusColors": {
     "finished": "31,246,14",
     "inProgress": "235,246,14",
@@ -33,19 +33,19 @@ export const phasing_config = {
     "notYetStarted": "",
     "advanced": "14,28,246"
   }
-  //End of the new content
+  ========END OF THE  ADDITIONAL CONTENT========
 }
 ```
 
-Note that this will define the color of each status, and the numbers define the value for the red, green and blue components of the color to be used.
-Now we need the function to obtain the status for each task. Let's add the `checkStatus` function inside `PhasingPanel` class:
+Observe que isso definirá a cor de cada status, e os números definem o valor dos componentes vermelho, verde e azul da cor a ser usada.
+Agora precisamos da função para obter o status de cada tarefa. Vamos adicionar a função `checkStatus` dentro da classe `PhasingPanel`:
 
 ```js
 ...
 addPropToMap(filterValue, taskId) {
   phasing_config.mapTaksNProps[filterValue] = taskId;
 }
-//Start of the new content
+========START OF THE  ADDITIONAL CONTENT========
 checkTaskStatus(task) {
   let currentDate = new Date();
 
@@ -87,10 +87,10 @@ checkTaskStatus(task) {
   else if (!shouldHaveStarted && taskProgress > 0)
     return 'advanced';
 }
-//End of the new content
+========END OF THE  ADDITIONAL CONTENT========
 ```
 
-Now we just need to call this method whenever the gantt chart gets changed. For that, we can take advantage of `on_progress_change` and `on_date_change` events from our library, by modifying the Gantt chart instantiation once more:
+Agora só precisamos chamar esse método sempre que o gráfico de Gantt for alterado. Para isso, podemos aproveitar os eventos `on_progress_change` e `on_date_change` da nossa biblioteca, modificando a instanciação do gráfico de Gantt mais uma vez:
 
 ```js
 ...
@@ -99,16 +99,16 @@ createGanttChart() {
 
   let newGantt = new Gantt("#phasing-container", phasing_config.tasks, {
     on_click: this.barCLickEvent.bind(this),
-    //Start of the new content
+    ========START OF THE  ADDITIONAL CONTENT========
     on_progress_change: this.handleColors.bind(this),
     on_date_change: this.handleColors.bind(this)
-    //End of the new content
+    ========END OF THE  ADDITIONAL CONTENT========
   });
 
   return newGantt;
 }
 
-//Start of the new content
+========START OF THE  ADDITIONAL CONTENT========
 handleColors() {
   this.handleElementsColor.call(this);
   this.handleBarsColor.call(this);
@@ -158,7 +158,7 @@ fromRGB2Color(rgbString) {
     return null;
   }
 }
-//End of the new content
+========END OF THE  ADDITIONAL CONTENT========
 ...
 ```
 
@@ -179,18 +179,18 @@ update(model, dbids) {
   });
   if (phasing_config.tasks.length > 0) {
     this.gantt = this.createGanttChart();
-    //Start of the new content
+    ========START OF THE  ADDITIONAL CONTENT========
     this.handleColors.call(this);
-    //End of the new content
+    ========END OF THE  ADDITIONAL CONTENT========
   }
 }
 ...
 ```
 
-Now there's only one part missing. How we'll control the color of the elements based on the status?
+Agora só falta uma parte. Como vamos controlar a cor dos elementos com base no status?
 
-For that, we can add a checkbox in our panel.
-Add the content below inside the `initialize` function of the `PhasingPanel` class:
+Para isso, podemos adicionar uma caixa de seleção em nosso painel.
+Adicione o conteúdo abaixo dentro da função `initialize` da classe `PhasingPanel`:
 
 ```js
 ...
@@ -203,7 +203,7 @@ initialize() {
   this.div = document.createElement('div');
   this.container.appendChild(this.div);
 
-  //Start of the new content
+  ========START OF THE  ADDITIONAL CONTENT========
 
   //Here we create a switch to control vision of the schedule based on the GANTT chart
   this.checkbox = document.createElement('input');
@@ -220,7 +220,7 @@ initialize() {
   this.checkbox.onchange = this.handleColors.bind(this);
   this.div.appendChild(this.checkbox);
 
-  //End of the new content
+  ========END OF THE  ADDITIONAL CONTENT========
 
   //Here we add the svg for the GANTT chart
   this.content = document.createElement('div');
@@ -233,8 +233,8 @@ initialize() {
 ...
 ```
 
-With all of that defined, you should be able to see the model just like in the gif below:
+Com tudo definido, você deve conseguir ver o modelo colorido, como no gif abaixo:
 
 ![Second Step Result](../../assets/images/steptwo.gif)
 
-[Next step - Improving UI & UX]({{ site.baseurl }}/improving/home/){: .btn}
+[Próxima etapa - Otimizando a experiência]({{ site.baseurl }}/improving/home/){: .btn}

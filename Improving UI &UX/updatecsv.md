@@ -7,15 +7,14 @@ parent: Improving UI & UX
 permalink: /improving/csv/
 ---
 
-# Update CSV
+# Atualizando o CSV
 
-Perfect, all great!
-We're just missing two scenarios...
+Perfeito, tudo ótimo!
 
-What if I need to update my chart with a different csv or I made some canges and need to export those?
-That's what we'll cover now.
+Mas e se eu precisar atualizar meu gráfico com um csv diferente ou fiz alguns canges e preciso exportá-los?
+Isso é o que vamos cobrir agora.
 
-Simply copy the content below to `initialize` function of `PhasingPanel` class:
+Basta copiar o conteúdo abaixo para a função `initialize` da classe `PhasingPanel`:
 
 ```js
 ...
@@ -174,6 +173,6 @@ async importCSV() {
 ...
 ```
 
-And now we have our Schedule connected with the model. Hope you enjoyed it!
+E agora temos nosso Gráfico conectado com o modelo. Espero que você tenha aproveitado!
 
 ![Update CSV](../../assets/images/csv.gif)

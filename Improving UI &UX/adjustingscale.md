@@ -7,9 +7,9 @@ parent: Improving UI & UX
 permalink: /improving/scale/
 ---
 
-# Adjusting the scale
+# Ajustando a escala
 
-We can start this part by adding a [dropdown](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/select) to our panel, specifically inside the `initialize` function of `PhasingPanel` class:
+Podemos iniciar esta parte adicionando um [dropdown](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/select) ao nosso painel, especificamente dentro da função `initialize` da classe `PhasingPanel `:
 
 ```js
 ...
@@ -80,7 +80,7 @@ changeViewMode(event) {
 ...
 ```
 
-And to keep the viewmode persistent, we need to add a call to `changeViewMode` inside the `update` function of `PhasingPanel` class:
+E para manter o viewmode persistente, precisamos adicionar uma chamada para `changeViewMode` dentro da função `update` da classe `PhasingPanel`:
 
 ```js
 ...
@@ -106,7 +106,7 @@ update(model, dbids) {
 ...
 ```
 
-It also takes advantage of `phasing_config.viewModes` from our configuration file. Let's add the available options according to our library inside `config.js`:
+São utilizados os valores de `phasing_config.viewModes` do nosso arquivo de configuração para definir as opções de escala. Vamos adicionar as opções disponíveis de acordo com nossa biblioteca (frappe/gantt) dentro do `config.js`:
 
 ```js
 export const phasing_config = {
@@ -140,8 +140,8 @@ export const phasing_config = {
 
 ```
 
-And that's it, our Gantt chart can now be rescaled to show the tasks in days, weeks or months, just like in the gif below!
+E pronto, nosso gráfico de Gantt agora pode ser redimensionado para mostrar as tarefas em dias, semanas ou meses, assim como no gif abaixo!
 
 ![Adjusting the scale](../../assets/images/viewmodes.gif)
 
-[Next step - Handling Panel orientation]({{ site.baseurl }}/improving/orientation/){: .btn}
+[próximo passo - Controlando a orientação]({{ site.baseurl }}/improving/orientation/){: .btn}
