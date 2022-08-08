@@ -11,15 +11,29 @@ permalink: /connecting/handlingcolors/
 
 In order to override the model and bars colors based on the Gantt chart configuration, we need a method to calculate the status of a task, a field in the configuration file to define the colors for each status and a functions reacting to the events triggered when we change the chart.
 Let's go do it!
-First we need to increment 'config.js' adding the fields below:
+First we need to increment `config.js` adding the fields below:
 
-```json
-"statusColors": {
-  "finished": "31,246,14",
-  "inProgress": "235,246,14",
-  "late": "246,55,14",
-  "notYetStarted": "",
-  "advanced": "14,28,246"
+```js
+export const phasing_config = {
+  "propFilter": "Type Name",
+  "tasks": [],
+  "requiredProps": {
+    "id": "ID",
+    "taskName": "NAME",
+    "startDate": "START",
+    "endDate": "END",
+    "taskProgress": "PROGRESS",
+    "dependencies": "DEPENDENCIES"
+  },
+  //Start of the new content
+  "statusColors": {
+    "finished": "31,246,14",
+    "inProgress": "235,246,14",
+    "late": "246,55,14",
+    "notYetStarted": "",
+    "advanced": "14,28,246"
+  }
+  //End of the new content
 }
 ```
 
@@ -27,6 +41,11 @@ Note that this will define the color of each status, and the numbers define the 
 Now we need the function to obtain the status for each task. Let's add the `checkStatus` function inside `PhasingPanel` class:
 
 ```js
+...
+addPropToMap(filterValue, taskId) {
+  phasing_config.mapTaksNProps[filterValue] = taskId;
+}
+//Start of the new content
 checkTaskStatus(task) {
   let currentDate = new Date();
 
@@ -68,43 +87,28 @@ checkTaskStatus(task) {
   else if (!shouldHaveStarted && taskProgress > 0)
     return 'advanced';
 }
+//End of the new content
 ```
 
 Now we just need to call this method whenever the gantt chart gets changed. For that, we can take advantage of `on_progress_change` and `on_date_change` events from our library, by modifying the Gantt chart instantiation once more:
 
 ```js
-let newGantt = new Gantt("#phasing-container", phasing_config.tasks, {
-  on_click: this.barCLickEvent.bind(this),
-  on_progress_change: this.handleColors.bind(this),
-  on_date_change: this.handleColors.bind(this)
-});
-```
+...
+createGanttChart() {
+  document.getElementById('phasing-container').innerHTML = `<svg id="phasing-container"></svg>`;
 
-To manage the bars colors as soon as we have the input loaded, we need to increment the `update` function from `PhasingPanel` class:
-
-```js
-update(model, dbids) {
-  if (phasing_config.tasks.length === 0) {
-    this.inputCSV();
-  }
-  model.getBulkProperties(dbids, { propFilter: phasing_config.propFilter }, (results) => {
-    results.map((result => {
-      this.updateObjects(result);
-    }))
-  }, (err) => {
-    console.error(err);
+  let newGantt = new Gantt("#phasing-container", phasing_config.tasks, {
+    on_click: this.barCLickEvent.bind(this),
+    //Start of the new content
+    on_progress_change: this.handleColors.bind(this),
+    on_date_change: this.handleColors.bind(this)
+    //End of the new content
   });
-  if (phasing_config.tasks.length > 0) {
-    this.gantt = this.createGanttChart();
-    this.handleColors.call(this); << HERE
-  }
+
+  return newGantt;
 }
-```
 
-We also need to define `handleColors` function, that'll handle colors of bars and elements.
-For that, add the content below inside the `PhasingPanel` class:
-
-```js
+//Start of the new content
 handleColors() {
   this.handleElementsColor.call(this);
   this.handleBarsColor.call(this);
@@ -154,6 +158,33 @@ fromRGB2Color(rgbString) {
     return null;
   }
 }
+//End of the new content
+...
+```
+
+To manage the bars colors as soon as we have the input loaded, we need to increment the `update` function from `PhasingPanel` class:
+
+```js
+...
+update(model, dbids) {
+  if (phasing_config.tasks.length === 0) {
+    this.inputCSV();
+  }
+  model.getBulkProperties(dbids, { propFilter: phasing_config.propFilter }, (results) => {
+    results.map((result => {
+      this.updateObjects(result);
+    }))
+  }, (err) => {
+    console.error(err);
+  });
+  if (phasing_config.tasks.length > 0) {
+    this.gantt = this.createGanttChart();
+    //Start of the new content
+    this.handleColors.call(this);
+    //End of the new content
+  }
+}
+...
 ```
 
 Now there's only one part missing. How we'll control the color of the elements based on the status?
@@ -162,20 +193,44 @@ For that, we can add a checkbox in our panel.
 Add the content below inside the `initialize` function of the `PhasingPanel` class:
 
 ```js
-//Here we create a switch to control vision of the schedule based on the GANTT chart
-this.checkbox = document.createElement('input');
-this.checkbox.type = 'checkbox';
-this.checkbox.id = 'colormodel';
-this.checkbox.style.width = (this.options.checkboxWidth || 30) + 'px';
-this.checkbox.style.height = (this.options.checkboxHeight || 28) + 'px';
-this.checkbox.style.margin = '0 0 0 ' + (this.options.margin || 5) + 'px';
-this.checkbox.style.verticalAlign = (this.options.verticalAlign || 'middle');
-this.checkbox.style.backgroundColor = (this.options.backgroundColor || 'white');
-this.checkbox.style.borderRadius = (this.options.borderRadius || 8) + 'px';
-this.checkbox.style.borderStyle = (this.options.borderStyle || 'groove');
+...
+initialize() {
+  this.title = this.createTitleBar(this.titleLabel || this.container.id);
+  this.title.style.overflow = 'auto';
+  this.initializeMoveHandlers(this.title);
+  this.container.appendChild(this.title);
 
-this.checkbox.onchange = this.handleColors.bind(this);
-this.div.appendChild(this.checkbox);
+  this.div = document.createElement('div');
+  this.container.appendChild(this.div);
+
+  //Start of the new content
+
+  //Here we create a switch to control vision of the schedule based on the GANTT chart
+  this.checkbox = document.createElement('input');
+  this.checkbox.type = 'checkbox';
+  this.checkbox.id = 'colormodel';
+  this.checkbox.style.width = (this.options.checkboxWidth || 30) + 'px';
+  this.checkbox.style.height = (this.options.checkboxHeight || 28) + 'px';
+  this.checkbox.style.margin = '0 0 0 ' + (this.options.margin || 5) + 'px';
+  this.checkbox.style.verticalAlign = (this.options.verticalAlign || 'middle');
+  this.checkbox.style.backgroundColor = (this.options.backgroundColor || 'white');
+  this.checkbox.style.borderRadius = (this.options.borderRadius || 8) + 'px';
+  this.checkbox.style.borderStyle = (this.options.borderStyle || 'groove');
+
+  this.checkbox.onchange = this.handleColors.bind(this);
+  this.div.appendChild(this.checkbox);
+
+  //End of the new content
+
+  //Here we add the svg for the GANTT chart
+  this.content = document.createElement('div');
+  this.content.style.backgroundColor = (this.options.backgroundColor || 'white');
+  this.content.innerHTML = `<svg id="phasing-container"></svg>`;
+  this.container.appendChild(this.content);
+
+  this.updateTasks();
+}
+...
 ```
 
 With all of that defined, you should be able to see the model just like in the gif below:

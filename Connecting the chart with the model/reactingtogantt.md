@@ -27,18 +27,36 @@ With that, we can define the method to map tasks and elements.
 Add the content below inside `update` function of `PhasingPanel` class:
 
 ```js
-model.getBulkProperties(dbids, { propFilter: phasing_config.propFilter }, (results) => {
-  results.map((result => {
-    this.updateObjects(result);
-  }))
-}, (err) => {
-  console.error(err);
-});
+...
+update(model, dbids) {
+  if (phasing_config.tasks.length === 0) {
+    this.inputCSV();
+  }
+  //Start of the new content
+  model.getBulkProperties(dbids, { propFilter: phasing_config.propFilter }, (results) => {
+    results.map((result => {
+      this.updateObjects(result);
+    }))
+  }, (err) => {
+    console.error(err);
+  });
+  //End of the new content
+  if (phasing_config.tasks.length > 0) {
+    this.gantt = this.createGanttChart();
+  }
+}
+...
 ```
 
 we also need to add `updateObjects` function inside `PhasingPanel` class, as defined below:
 
 ```js
+...
+validateCSV(line) {
+  let parameters = line.split(',');
+  return Object.values(phasing_config.requiredProps).every((currentProp) => !!parameters.find(p => p === currentProp));
+}
+//Start of the new content
 updateObjects(result) {
   let currentTaskId = phasing_config.mapTaksNProps[result.properties[0].displayValue];
   if (!!currentTaskId) {
@@ -48,6 +66,7 @@ updateObjects(result) {
     phasing_config.objects[currentTaskId].push(result.dbId);
   }
 }
+//End of the new content
 ```
 
 And athat covers the elements, now we need to implement `mapTaksNProps` field with the values from our input.
@@ -56,15 +75,47 @@ To do that, we'll take advantage of `addPropToMap` function called every time we
 Add `addPropToMap` function inside `PhasingPanel` class:
 
 ```js
+...
+updateObjects(result) {
+  let currentTaskId = phasing_config.mapTaksNProps[result.properties[0].displayValue];
+  if (!!currentTaskId) {
+    if (!phasing_config.objects[currentTaskId])
+      phasing_config.objects[currentTaskId] = [];
+
+    phasing_config.objects[currentTaskId].push(result.dbId);
+  }
+}
+//Start of the new content
 addPropToMap(filterValue, taskId) {
   phasing_config.mapTaksNProps[filterValue] = taskId;
 }
+//End of the new content
 ```
 
 And reference it inside `lineToObject` function:
 
 ```js
-this.addPropToMap(parameters[inputHeaders.findIndex(h => h === phasing_config.propFilter)], newObject.id);
+...
+//This function converts a line from imported csv into an object to generate the GANTT chart
+lineToObject(line, inputHeadersLine) {
+  let parameters = line.split(',');
+  let inputHeaders = inputHeadersLine.split(',');
+  let newObject = {};
+  // Object.keys(newObject) = PHASING_CONFIG.requiredProps;
+  Object.values(phasing_config.requiredProps).forEach(requiredProp => {
+    newObject.id = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.id)];
+    newObject.name = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.taskName)];
+    newObject.start = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.startDate)];
+    newObject.end = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.endDate)];
+    newObject.progress = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.taskProgress)];
+    newObject.dependencies = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.dependencies)];
+    newObject.dependencies.replaceAll('-', ',');
+  });
+  //Start of the new content
+  this.addPropToMap(parameters[inputHeaders.findIndex(h => h === phasing_config.propFilter)], newObject.id);
+  //End of the new content
+  return newObject;
+  }
 ```
 
 Now that we have our schedule with tasks and model elements properly mapped, we can take advantage of the events triggered by [Frappe-Gantt](https://frappe.io/gantt).
@@ -72,20 +123,28 @@ The first one we can use is `on_click` in a way to isolate proper elements when 
 
 To achieve that, we need to change `PhasingPanel.js` by adding the contents bellow.
 
-First, we add the listener on the Gantt chart instantiation:
+First, we add the `on_click` listener on the Gantt chart instantiation inside `createGanttChart` function:
 
 ```js
-let newGantt = new Gantt("#phasing-container", phasing_config.tasks, {
-  on_click: this.barCLickEvent.bind(this)
-});
-```
+...
+createGanttChart() {
+  document.getElementById('phasing-container').innerHTML = `<svg id="phasing-container"></svg>`;
 
-Now, we add the referred `barCLickEvent` function:
-
-```js
+  let newGantt = new Gantt("#phasing-container", phasing_config.tasks, 
+  //Start of the new content
+  {
+    on_click: this.barCLickEvent.bind(this)
+  }
+  );
+  //End of the new content
+  return newGantt;
+}
+//Start of the new content
 barCLickEvent(task) {
   this.extension.viewer.isolate(phasing_config.objects[task.id]);
 }
+//End of the new content
+...
 ```
 
 And now we're able to isolate linked elements by double-clicking in a task, just like in the gif below:

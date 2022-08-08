@@ -11,10 +11,11 @@ permalink: /building/configuration/
 
 The configuration file defines how our extension will read the csv file, arrange and connect data with our model.
 In this first step we need to define the property we'll use for filtering, the required properties expected from a csv input and the variables to store tasks, objects maped to tasks and a dictionary for mapping.
-Let's create our configuration file `config.js` under `wwwroot/extensions` with the content below:
+Let's improve our configuration file `config.js` under `wwwroot/extensions` with the content below:
 
 ```js
 export const phasing_config = {
+  "propFilter": "Type Name",
   "tasks": [],
   "requiredProps": {
     "id": "ID",

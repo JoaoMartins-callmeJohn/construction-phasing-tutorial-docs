@@ -81,7 +81,7 @@ Autodesk.Viewing.theExtensionManager.registerExtension('PhasingExtension', Phasi
 
 Now we need to add our extension to Viewer.
 
-Add the line below to your js file that's loading the Viewer ():
+Add the line below to your js file that's loading the Viewer:
 
 ```
 import './extensions/PhasingExtension.js';
