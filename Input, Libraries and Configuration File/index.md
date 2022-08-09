@@ -153,6 +153,24 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
 }
 ```
 
+Para gerenciar os inputs (CSV) no nosso exemplo, estamos usando a biblioteca [SweetAlert2]().
+Para usá-la basta adicionar sua referência copiando a linha abaixo no arquivo `index.html`:
+```jsx
+...
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  ========START OF THE  ADDITIONAL CONTENT========
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  ========END OF THE  ADDITIONAL CONTENT========
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+  <title>Autodesk Forge: Construction Pasing Sample</title>
+</head>
+...
+```
+
 Agora que sabemos como vai funcionar e as dependências do projeto, podemos começar a construir nosso exemplo.
 
 [Próxima etapa - Adicionando o Gráfico de Gantt]({{ site.baseurl }}/building/home){: .btn}
