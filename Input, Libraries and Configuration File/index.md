@@ -30,6 +30,8 @@ Precisamos de todas essas informações para gerar cada tarefa e também precisa
 
 Com este csv temos todas as informações exigidas pela biblioteca e a propriedade utilizada para conectar com o modelo (**Type Name**).
 
+Você pode encontrar um exemplo de input csv [aqui](https://raw.githubusercontent.com/JoaoMartins-Forge/construction-phasing-tutorial-docs/main/assets/samples/sampleinput.csv)
+
 Também precisamos do arquivo de configuração (`config.js`). A configuração contém informações que usaremos em diferentes seções deste tutorial e abordaremos cada parte aqui. Por enquanto, vamos nos concentrar na propriedade usada para mapear tarefas e elementos. Isso é controlado pelo campo `propFilter`.
 
 Por enquanto, você pode criar um arquivo `config.js` na pasta `wwwroot/extensions` com o conteúdo abaixo:

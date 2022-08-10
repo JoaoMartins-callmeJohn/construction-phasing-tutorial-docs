@@ -12,7 +12,7 @@ permalink: /connecting/reacting/
 Com nossas tarefas definidas, precisamos mapear cada uma com o elemento pertinente renderizado no Viewer.
 Para fazer isso, precisamos recuperar as propriedades dos elementos logo após a entrada do arquivo csv.
 
-Esse é o nosso primeiro passo! Através do método[getbulkProperties](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback).
+Esse é o nosso primeiro passo! Através do método [getbulkProperties](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback).
 Para este exemplo, mapeamos tarefas e elementos com base no valor de uma propriedade definida, e essa propriedade será definida pelo arquivo `config.js`.
 Vamos adicionar dois campos no arquivo de configuração:
  Um para armazenar os objetos e um para armazenar tarefas e propriedades, assim como o trecho abaixo:

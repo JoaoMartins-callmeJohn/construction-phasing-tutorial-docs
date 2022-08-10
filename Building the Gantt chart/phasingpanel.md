@@ -111,7 +111,6 @@ export class PhasingPanel extends Autodesk.Viewing.UI.DockingPanel {
     let parameters = line.split(',');
     let inputHeaders = inputHeadersLine.split(',');
     let newObject = {};
-    // Object.keys(newObject) = PHASING_CONFIG.requiredProps;
     Object.values(phasing_config.requiredProps).forEach(requiredProp => {
       newObject.id = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.id)];
       newObject.name = parameters[inputHeaders.findIndex(h => h === phasing_config.requiredProps.taskName)];

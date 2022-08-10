@@ -60,6 +60,13 @@ initialize() {
   this.checkbox.onchange = this.handleColors.bind(this);
   this.div.appendChild(this.checkbox);
 
+  this.label = document.createElement('label');
+  this.label.for = 'colormodel';
+  this.label.innerHTML = 'Show Phases';
+  this.label.style.fontSize = (this.options.fontSize || 18) + 'px';
+  this.label.style.verticalAlign = (this.options.verticalAlign || 'middle');
+  this.div.appendChild(this.label);
+
   //Here we add the svg for the GANTT chart
   this.content = document.createElement('div');
   this.content.style.backgroundColor = (this.options.backgroundColor || 'white');
@@ -120,6 +127,8 @@ export const phasing_config = {
     "taskProgress": "PROGRESS",
     "dependencies": "DEPENDENCIES"
   },
+  "objects": {},
+  "mapTaksNProps": {},
   "statusColors": {
     "finished": "31,246,14",
     "inProgress": "235,246,14",
@@ -134,8 +143,8 @@ export const phasing_config = {
     "Day",
     "Week",
     "Month"
+  ]
   ========END OF THE  ADDITIONAL CONTENT========
-]
 }
 
 ```

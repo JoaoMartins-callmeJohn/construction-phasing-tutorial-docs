@@ -7,7 +7,7 @@ parent: Building the Gantt chart
 permalink: /building/configuration/
 ---
 
-# Configuration File
+# Arquivo de Configuração
 
 O arquivo de configuração define como nossa extensão fará a leitura do arquivo csv, para posterior organização e conexão dos dados com o nosso modelo.
 Nesta primeira etapa, precisamos definir a propriedade que usaremos para filtrar, as propriedades necessárias esperadas do arquivo csv e as variáveis para armazenar tarefas.

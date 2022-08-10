@@ -10,6 +10,7 @@ permalink: /connecting/handlingcolors/
 # Controlando a cor dos elementos
 
 Para substituir as cores do modelo e das barras com base na configuração do gráfico de Gantt, precisamos de um método para calcular o status de uma tarefa, um campo no arquivo de configuração para definir as cores para cada status e uma função reagindo aos eventos acionados quando mudamos o gráfico.
+Para sobrepor as cores dos elementos vamos utilizar o método [setThemingColor](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#setthemingcolor-dbid-color-model-recursive)
 Vamos fazê-lo!
 Primeiro precisamos incrementar o arquivo `config.js` adicionando os campos abaixo:
 
@@ -25,6 +26,8 @@ export const phasing_config = {
     "taskProgress": "PROGRESS",
     "dependencies": "DEPENDENCIES"
   },
+  "objects": {},
+  "mapTaksNProps": {}
   ========START OF THE  ADDITIONAL CONTENT========
   "statusColors": {
     "finished": "31,246,14",
@@ -219,6 +222,13 @@ initialize() {
 
   this.checkbox.onchange = this.handleColors.bind(this);
   this.div.appendChild(this.checkbox);
+
+  this.label = document.createElement('label');
+  this.label.for = 'colormodel';
+  this.label.innerHTML = 'Show Phases';
+  this.label.style.fontSize = (this.options.fontSize || 18) + 'px';
+  this.label.style.verticalAlign = (this.options.verticalAlign || 'middle');
+  this.div.appendChild(this.label);
 
   ========END OF THE  ADDITIONAL CONTENT========
 
