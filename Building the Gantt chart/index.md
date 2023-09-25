@@ -8,7 +8,7 @@ permalink: /building/home/
 
 # Building the Gantt chart
 
-As said in our landing page, this sample is based on our [tutorials](https://forge-tutorials.autodesk.io), so the first step (assuming you have a ready base sample) is creating the `BaseExtension.js` under `wwwroot/extensions`. From there, we'll add the two files `PhasingExtension` and `PhasingPanel`. With that, we'll be able to build a Gantt chart connected to the model based on the input csv, just like the gif below:
+As said in our landing page, this sample is based on our [tutorials](https://tutorials.autodesk.io), so the first step (assuming you have a ready base sample) is creating the `BaseExtension.js` under `wwwroot/extensions`. From there, we'll add the two files `PhasingExtension` and `PhasingPanel`. With that, we'll be able to build a Gantt chart connected to the model based on the input csv, just like the gif below:
 
 ![First Step Result](../../assets/images/stepone.gif)
 

@@ -12,7 +12,7 @@ permalink: /connecting/reacting/
 With our tasks defined, we need to map each one of them with the proper element rendered in Viewer.
 To do that, we need to retrieve the elements properties right after the input if the csv file.
 
-That's our first step, through the [getbulkProperties](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback) function.
+That's our first step, through the [getbulkProperties](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback) function.
 For this sample, we'll map tasks and elements based on the value of a property defined, and this property will be defined by the `config.js`file.
 Let's add three fields in the configuration file, one to store the objects, one to store tasks and properties and last one to control wich property we'll use for mapping, just like the snippet below:
 
@@ -130,7 +130,7 @@ First, we add the `on_click` listener on the Gantt chart instantiation inside `c
 createGanttChart() {
   document.getElementById('phasing-container').innerHTML = `<svg id="phasing-container"></svg>`;
 
-  let newGantt = new Gantt("#phasing-container", phasing_config.tasks, 
+  let newGantt = new Gantt("#phasing-container", phasing_config.tasks,
   //Start of the new content
   {
     on_click: this.barCLickEvent.bind(this)

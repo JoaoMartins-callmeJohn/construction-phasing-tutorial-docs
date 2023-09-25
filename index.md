@@ -16,15 +16,15 @@ In this tutorial we'll be focusing on building a sample for construction phasing
 
 ![Final Result](/assets/images/complete.gif)
 
-In details, we'll basically render a model (managed by you Forge app or Autodesk SaaS applications, refer [here](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) on the browser with Viewer, and then adding a [Gantt chart](https://en.wikipedia.org/wiki/Gantt_chart) connected with the model's, in a way that we can check the objects related to each task, having a graphical visual of our schedule.
+In details, we'll basically render a model (managed by you APS app or Autodesk SaaS applications, refer [here](https://aps.autodesk.com/en/docs/data/v2/developers_guide/basics/)) on the browser with Viewer, and then adding a [Gantt chart](https://en.wikipedia.org/wiki/Gantt_chart) connected with the model's, in a way that we can check the objects related to each task, having a graphical visual of our schedule.
 
 Cool, right, but for that we'll need some pre-requisited in order to take the most of our efforts:
 
-1. First of all, if you're taking your first steps with Forge, please go through [Getting Started](https://forge-tutorials.autodesk.io) and [Environment Setup](https://forge-tutorials.autodesk.io/setup/).
+1. First of all, if you're taking your first steps with APS, please go through [Getting Started](https://tutorials.autodesk.io) and [Environment Setup](https://tutorials.autodesk.io/setup/).
 
-2. This tutorial will focus on building a [Viewer Extension](https://forge.autodesk.com/en/docs/viewer/v7/developers_guide/viewer_basics/extensions/), not the whole app. If you don't have an app, you can take advantage of [Simple Viewer](https://forge-tutorials.autodesk.io/tutorials/simple-viewer/) or [Hubs Browser](https://forge-tutorials.autodesk.io/tutorials/hubs-browser/) in either Node.js or .NET.
+2. This tutorial will focus on building a [Viewer Extension](https://aps.autodesk.com/en/docs/viewer/v7/developers_guide/viewer_basics/extensions/), not the whole app. If you don't have an app, you can take advantage of [Simple Viewer](https://tutorials.autodesk.io/tutorials/simple-viewer/) or [Hubs Browser](https://tutorials.autodesk.io/tutorials/hubs-browser/) in either Node.js or .NET.
 
-3. To build this extension, we'll take advantage of the [Basic Extension](https://forge-tutorials.autodesk.io/tutorials/dashboard/basic) from [Forge tutorial](https://forge-tutorials.autodesk.io), but you don't need to go there, we'll provide the `BaseExtension.js` file as part of this tutorial.
+3. To build this extension, we'll take advantage of the [Basic Extension](https://tutorials.autodesk.io/tutorials/dashboard/basic) from [APS tutorial](https://tutorials.autodesk.io), but you don't need to go there, we'll provide the `BaseExtension.js` file as part of this tutorial.
 
 4. If you don't have a model for testing, feel free to grab one of our [sample files](https://knowledge.autodesk.com/support/revit/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/Revit-GetStarted/files/GUID-7B9C7A69-1083-406D-A01F-53D405C167F3-htm.html) (we strongly recomend a Revit sample).
 
