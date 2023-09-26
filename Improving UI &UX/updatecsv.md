@@ -11,7 +11,7 @@ permalink: /improving/csv/
 
 Perfeito, tudo ótimo!
 
-Mas e se eu precisar atualizar meu gráfico com um csv diferente ou fiz alguns canges e preciso exportá-los?
+Mas e se eu precisar atualizar meu gráfico com um csv diferente ou fiz algumas mudanças e preciso exportá-las em um novo csv?
 Isso é o que vamos cobrir agora.
 
 Basta copiar o conteúdo abaixo para a função `initialize` da classe `PhasingPanel`:

@@ -10,8 +10,8 @@ permalink: /connecting/handlingcolors/
 # Controlando a cor dos elementos
 
 Para substituir as cores do modelo e das barras com base na configuração do gráfico de Gantt, precisamos de um método para calcular o status de uma tarefa, um campo no arquivo de configuração para definir as cores para cada status e uma função reagindo aos eventos acionados quando mudamos o gráfico.
-Para sobrepor as cores dos elementos vamos utilizar o método [setThemingColor](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#setthemingcolor-dbid-color-model-recursive)
-Vamos fazê-lo!
+Para sobrepor as cores dos elementos vamos utilizar o método [setThemingColor](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#setthemingcolor-dbid-color-model-recursive).
+
 Primeiro precisamos incrementar o arquivo `config.js` adicionando os campos abaixo:
 
 ```js
@@ -27,7 +27,7 @@ export const phasing_config = {
     "dependencies": "DEPENDENCIES"
   },
   "objects": {},
-  "mapTaksNProps": {}
+  "mapTaksNProps": {},
   ========START OF THE  ADDITIONAL CONTENT========
   "statusColors": {
     "finished": "31,246,14",
@@ -93,7 +93,7 @@ checkTaskStatus(task) {
 ========END OF THE  ADDITIONAL CONTENT========
 ```
 
-Agora só precisamos chamar esse método sempre que o gráfico de Gantt for alterado. Para isso, podemos aproveitar os eventos `on_progress_change` e `on_date_change` da nossa biblioteca, modificando a instanciação do gráfico de Gantt mais uma vez:
+Agora só precisamos chamar esse método sempre que o gráfico de Gantt for alterado. Para isso, podemos aproveitar os eventos `on_progress_change` e `on_date_change` da nossa biblioteca, modificando a instanciação do gráfico de Gantt em `PhasingPanel.js` mais uma vez:
 
 ```js
 ...
@@ -165,7 +165,7 @@ fromRGB2Color(rgbString) {
 ...
 ```
 
-To manage the bars colors as soon as we have the input loaded, we need to increment the `update` function from `PhasingPanel` class:
+Para gerenciar as cores das barras assim que tivermos o input carregado, precisamos incrementar a função `update` da classe `PhasingPanel`:
 
 ```js
 ...

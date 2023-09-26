@@ -15,7 +15,7 @@ Para fazer isso, precisamos recuperar as propriedades dos elementos logo após a
 Esse é o nosso primeiro passo! Através do método [getbulkProperties](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getbulkproperties-dbids-options-onsuccesscallback-onerrorcallback).
 Para este exemplo, mapeamos tarefas e elementos com base no valor de uma propriedade definida, e essa propriedade será definida pelo arquivo `config.js`.
 Vamos adicionar dois campos no arquivo de configuração:
-Um para armazenar os objetos e um para armazenar tarefas e propriedades, assim como o trecho abaixo:
+Um para armazenar os objetos e um para armazenar uma correlação entre tarefas e propriedades, assim como o trecho abaixo:
 
 ```js
 export const phasing_config = {
@@ -35,6 +35,8 @@ export const phasing_config = {
   ========END OF THE  ADDITIONAL CONTENT========
 }
 ```
+
+Onde os objetos de `objects` serão do tipo `taskId: [dbid1, dbid2, ...]` e os objetos de `mapTaksNProps` serão do tipo `property value: task Id`.
 
 Para esta demonstração, usaremos a propriedade `Type Name` para mapeamento.
 Com isso, podemos definir o método para mapear tarefas e elementos.
