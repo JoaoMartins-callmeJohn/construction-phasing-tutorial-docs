@@ -30,7 +30,7 @@ Precisamos de todas essas informações para gerar cada tarefa e também precisa
 
 Com este csv temos todas as informações exigidas pela biblioteca e a propriedade utilizada para conectar com o modelo (**Type Name**).
 
-Você pode encontrar um exemplo de input csv [aqui](https://raw.githubusercontent.com/JoaoMartins-Forge/construction-phasing-tutorial-docs/main/assets/samples/sampleinput.csv)
+Você pode encontrar um exemplo de input csv [aqui](https://raw.githubusercontent.com/JoaoMartins-callmejohn/construction-phasing-tutorial-docs/main/assets/samples/sampleinput.csv)
 
 Também precisamos do arquivo de configuração (`config.js`). A configuração contém informações que usaremos em diferentes seções deste tutorial e abordaremos cada parte aqui. Por enquanto, vamos nos concentrar na propriedade usada para mapear tarefas e elementos. Isso é controlado pelo campo `propFilter`.
 
@@ -52,21 +52,41 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
   constructor(viewer, options) {
     super(viewer, options);
     this._onObjectTreeCreated = (ev) => this.onModelLoaded(ev.model);
-    this._onSelectionChanged = (ev) => this.onSelectionChanged(ev.model, ev.dbIdArray);
-    this._onIsolationChanged = (ev) => this.onIsolationChanged(ev.model, ev.nodeIdArray);
+    this._onSelectionChanged = (ev) =>
+      this.onSelectionChanged(ev.model, ev.dbIdArray);
+    this._onIsolationChanged = (ev) =>
+      this.onIsolationChanged(ev.model, ev.nodeIdArray);
   }
 
   load() {
-    this.viewer.addEventListener(Autodesk.Viewing.OBJECT_TREE_CREATED_EVENT, this._onObjectTreeCreated);
-    this.viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this._onSelectionChanged);
-    this.viewer.addEventListener(Autodesk.Viewing.ISOLATE_EVENT, this._onIsolationChanged);
+    this.viewer.addEventListener(
+      Autodesk.Viewing.OBJECT_TREE_CREATED_EVENT,
+      this._onObjectTreeCreated
+    );
+    this.viewer.addEventListener(
+      Autodesk.Viewing.SELECTION_CHANGED_EVENT,
+      this._onSelectionChanged
+    );
+    this.viewer.addEventListener(
+      Autodesk.Viewing.ISOLATE_EVENT,
+      this._onIsolationChanged
+    );
     return true;
   }
 
   unload() {
-    this.viewer.removeEventListener(Autodesk.Viewing.OBJECT_TREE_CREATED_EVENT, this._onObjectTreeCreated);
-    this.viewer.removeEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this._onSelectionChanged);
-    this.viewer.removeEventListener(Autodesk.Viewing.ISOLATE_EVENT, this._onIsolationChanged);
+    this.viewer.removeEventListener(
+      Autodesk.Viewing.OBJECT_TREE_CREATED_EVENT,
+      this._onObjectTreeCreated
+    );
+    this.viewer.removeEventListener(
+      Autodesk.Viewing.SELECTION_CHANGED_EVENT,
+      this._onSelectionChanged
+    );
+    this.viewer.removeEventListener(
+      Autodesk.Viewing.ISOLATE_EVENT,
+      this._onIsolationChanged
+    );
     return true;
   }
 
@@ -80,11 +100,15 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
     return new Promise(function (resolve, reject) {
       model.getObjectTree(function (tree) {
         let leaves = [];
-        tree.enumNodeChildren(tree.getRootId(), function (dbid) {
-          if (tree.getChildCount(dbid) === 0) {
-            leaves.push(dbid);
-          }
-        }, true);
+        tree.enumNodeChildren(
+          tree.getRootId(),
+          function (dbid) {
+            if (tree.getChildCount(dbid) === 0) {
+              leaves.push(dbid);
+            }
+          },
+          true
+        );
         resolve(leaves);
       }, reject);
     });
@@ -93,39 +117,44 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
   async findPropertyNames(model) {
     const dbids = await this.findLeafNodes(model);
     return new Promise(function (resolve, reject) {
-      model.getBulkProperties(dbids, {}, function (results) {
-        let propNames = new Set();
-        for (const result of results) {
-          for (const prop of result.properties) {
-            propNames.add(prop.displayName);
+      model.getBulkProperties(
+        dbids,
+        {},
+        function (results) {
+          let propNames = new Set();
+          for (const result of results) {
+            for (const prop of result.properties) {
+              propNames.add(prop.displayName);
+            }
           }
-        }
-        resolve(Array.from(propNames.values()));
-      }, reject);
+          resolve(Array.from(propNames.values()));
+        },
+        reject
+      );
     });
   }
 
   createToolbarButton(buttonId, buttonIconUrl, buttonTooltip) {
-    let group = this.viewer.toolbar.getControl('dashboard-toolbar-group');
+    let group = this.viewer.toolbar.getControl("dashboard-toolbar-group");
     if (!group) {
-      group = new Autodesk.Viewing.UI.ControlGroup('dashboard-toolbar-group');
+      group = new Autodesk.Viewing.UI.ControlGroup("dashboard-toolbar-group");
       this.viewer.toolbar.addControl(group);
     }
     const button = new Autodesk.Viewing.UI.Button(buttonId);
     button.setToolTip(buttonTooltip);
     group.addControl(button);
-    const icon = button.container.querySelector('.adsk-button-icon');
+    const icon = button.container.querySelector(".adsk-button-icon");
     if (icon) {
-      icon.style.backgroundImage = `url(${buttonIconUrl})`; 
-      icon.style.backgroundSize = `24px`; 
-      icon.style.backgroundRepeat = `no-repeat`; 
-      icon.style.backgroundPosition = `center`; 
+      icon.style.backgroundImage = `url(${buttonIconUrl})`;
+      icon.style.backgroundSize = `24px`;
+      icon.style.backgroundRepeat = `no-repeat`;
+      icon.style.backgroundPosition = `center`;
     }
     return button;
   }
 
   removeToolbarButton(button) {
-    const group = this.viewer.toolbar.getControl('dashboard-toolbar-group');
+    const group = this.viewer.toolbar.getControl("dashboard-toolbar-group");
     group.removeControl(button);
   }
 
@@ -134,7 +163,7 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
       return Promise.resolve();
     }
     return new Promise(function (resolve, reject) {
-      const el = document.createElement('script');
+      const el = document.createElement("script");
       el.src = url;
       el.onload = resolve;
       el.onerror = reject;
@@ -144,8 +173,8 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
 
   loadStylesheet(url) {
     return new Promise(function (resolve, reject) {
-      const el = document.createElement('link');
-      el.rel = 'stylesheet';
+      const el = document.createElement("link");
+      el.rel = "stylesheet";
       el.href = url;
       el.onload = resolve;
       el.onerror = reject;
@@ -157,6 +186,7 @@ export class BaseExtension extends Autodesk.Viewing.Extension {
 
 Para gerenciar os inputs (CSV) no nosso exemplo, estamos usando a biblioteca [SweetAlert2]().
 Para usá-la basta adicionar sua referência copiando a linha abaixo no arquivo `index.html`:
+
 ```jsx
 ...
 <head>
@@ -168,7 +198,7 @@ Para usá-la basta adicionar sua referência copiando a linha abaixo no arquivo 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   ========END OF THE  ADDITIONAL CONTENT========
   <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
-  <title>Autodesk Forge: Construction Pasing Sample</title>
+  <title>Autodesk Platform Services: Construction Pasing Sample</title>
 </head>
 ...
 ```

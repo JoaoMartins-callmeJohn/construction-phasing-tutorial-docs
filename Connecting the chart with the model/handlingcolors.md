@@ -10,7 +10,7 @@ permalink: /connecting/handlingcolors/
 # Controlando a cor dos elementos
 
 Para substituir as cores do modelo e das barras com base na configuração do gráfico de Gantt, precisamos de um método para calcular o status de uma tarefa, um campo no arquivo de configuração para definir as cores para cada status e uma função reagindo aos eventos acionados quando mudamos o gráfico.
-Para sobrepor as cores dos elementos vamos utilizar o método [setThemingColor](https://forge.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#setthemingcolor-dbid-color-model-recursive)
+Para sobrepor as cores dos elementos vamos utilizar o método [setThemingColor](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#setthemingcolor-dbid-color-model-recursive)
 Vamos fazê-lo!
 Primeiro precisamos incrementar o arquivo `config.js` adicionando os campos abaixo:
 
